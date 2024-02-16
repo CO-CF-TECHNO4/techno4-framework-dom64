@@ -1,0 +1,30 @@
+{
+  "name": "dom64",
+  "version": "0.1.0",
+  "description": "DOM64 – Document Object Model manipulation library.",
+  "sideEffects": false,
+  "types": "dom64.d.ts",
+  "type": "module",
+  "main": "./dom64.esm.js",
+  "module": "./dom64.esm.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dom64.esm.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://terminal.techno4.online/T4Public/dom64.git"
+  },
+  "keywords": [
+    "dom64"
+  ],
+  "author": "TECHNO4",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://techno4.online"
+  },
+  "homepage": "https://techno4.online",
+  "dependencies": {
+    "ssr-window": "^4.0.0"
+  }
+}

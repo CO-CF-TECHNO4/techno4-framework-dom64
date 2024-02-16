@@ -1,0 +1,8 @@
+stages:
+  - build
+
+build-code-job:
+  stage: build
+  script:
+    - echo "Try to build prod:"
+    - cross-env NODE_ENV=production node ./scripts/build
