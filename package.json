@@ -1,12 +1,18 @@
 {
-  "name": "dom64-src",
+  "name": "dom64",
   "version": "0.1.1",
   "description": "DOM64 – Document Object Model manipulation library.",
   "sideEffects": false,
-  "main": "dom64.cjs.js",
-  "types": "dom64.d.ts",
-  "jsnext:main": "dom64.esm.js",
-  "module": "dom64.esm.js",
+  "main": "package/dom64.js",
+  "types": "package/dom64.d.ts",
+  "module": "package/dom64.esm.js",
+  "exports": {
+    ".": {
+      "import": "./package/dom64.esm.js",
+      "require": "./package/dom64.js",
+      "types": "./package/dom64.d.ts"
+    }
+  },
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development node ./scripts/build",
     "build:prod": "cross-env NODE_ENV=production node ./scripts/build",
@@ -19,17 +25,22 @@
     "release": "npm run validate && node ./scripts/release",
     "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -u -s"
   },
+  "files": [
+    "package",
+    "README.md",
+    "LICENSE"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://terminal.techno4.online/T4Public/dom64.git"
+    "url": "git@github.com:CO-CF-TECHNO4/techno4-framework-dom64.git"
   },
   "keywords": [
     "dom64"
   ],
-  "author": "TECHNO4",
-  "license": "MIT",
+  "author": "CO «CF TECHNO4» <office@techno4.online>",
+  "license": "LGPL-3.0-or-later",
   "bugs": {
-    "url": "https://techno4.online"
+    "url": "https://github.com/CO-CF-TECHNO4/techno4-framework-dom64/issues"
   },
   "homepage": "https://techno4.online",
   "devDependencies": {

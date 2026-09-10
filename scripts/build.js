@@ -84,16 +84,59 @@ async function buildESM() {
 }
 
 async function copyDts() {
+  await fs.ensureDir(path.resolve(__dirname, `../${outDir}`));
   await fs.copyFile(
     path.resolve(__dirname, '../src/dom64.d.ts'),
-    path.resolve(__dirname, '../package/dom64.d.ts'),
+    path.resolve(__dirname, `../${outDir}/dom64.d.ts`),
   );
 }
 
-try {
-  buildUMD();
-  buildESM();
-  copyDts();
-} catch (err) {
-  console.log(err);
+async function copyMeta() {
+  const metaFiles = ['README.md', 'LICENSE'];
+  for (const f of metaFiles) {
+    const src = path.resolve(__dirname, `../${f}`);
+    if (fs.existsSync(src)) {
+      await fs.copyFile(src, path.resolve(__dirname, `../${outDir}/${f}`));
+    }
+  }
+  const childPkg = {
+    name: pkg.name,
+    version,
+    description: pkg.description,
+    sideEffects: false,
+    main: 'dom64.js',
+    types: 'dom64.d.ts',
+    module: 'dom64.esm.js',
+    exports: {
+      '.': {
+        import: './dom64.esm.js',
+        require: './dom64.js',
+        types: './dom64.d.ts',
+      },
+    },
+    repository: pkg.repository,
+    keywords: pkg.keywords,
+    author: pkg.author,
+    license: pkg.license,
+    bugs: pkg.bugs,
+    homepage: pkg.homepage,
+    dependencies: pkg.dependencies,
+  };
+  await fs.writeFile(
+    path.resolve(__dirname, `../${outDir}/package.json`),
+    `${JSON.stringify(childPkg, null, 2)}\n`,
+  );
 }
+
+async function run() {
+  await fs.ensureDir(path.resolve(__dirname, `../${outDir}`));
+  await buildUMD();
+  await buildESM();
+  await copyDts();
+  await copyMeta();
+}
+
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
