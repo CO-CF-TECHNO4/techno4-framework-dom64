@@ -1,6 +1,6 @@
 {
   "name": "dom64",
-  "version": "0.1.1",
+  "version": "2.0.4",
   "description": "DOM64 – Document Object Model manipulation library.",
   "sideEffects": false,
   "main": "dom64.js",
