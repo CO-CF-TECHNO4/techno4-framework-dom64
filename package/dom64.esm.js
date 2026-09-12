@@ -1,5 +1,5 @@
 /**
- * DOM64 0.1.1
+ * DOM64 2.0.4
  * DOM64 – Document Object Model manipulation library.
  * https://techno4.online
  *
@@ -7,7 +7,7 @@
  *
  * Licensed under LGPL-3.0-or-later
  *
- * Released on: September 11, 2026
+ * Released on: September 12, 2026
  */
 import { getWindow, getDocument } from 'ssr-window';
 
